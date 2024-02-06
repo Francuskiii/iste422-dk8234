@@ -1,0 +1,1 @@
+This script was written on a Rocky Linux VM and it can be executed from the terminal, no downloads are needed (other than having python3 installed obviously). Included in this folder is data from when I executed the script. Please keep the data.json file in the same directory as the script or it will not work. If there are any issues please let me know. 
