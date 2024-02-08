@@ -1,0 +1,37 @@
+--- old.js	2024-02-08 14:14:33.219724830 -0500
++++ new.js	2024-02-08 15:03:51.009275469 -0500
+@@ -8,12 +8,18 @@
+ that natively without any external plugins
+ */
+ 
+-//Node JS dependencies for reading and writing files to the file system.
++
+ var fs = require('fs');
+-//Read the file from the file system
+-var obj = JSON.parse(fs.readFileSync('./data.json','utf8'));
+-//get the date from the first item.
+-var date = new Date(obj[0].timestamp);
++//check if proper arg provided
++if (process.argv.length <= 2) {
++  console.error("Usage: node script.js <json_file_path>");
++  process.exit(1);
++}
++// Read the file path from the command-line arguments
++var jsonFilePath = process.argv[2];
++var obj = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
++//get the curent date
++var date = new Date();
+ //format the date to the YYYYMMDD.csv required for the submission.
+ var datef = date.getFullYear() + pad2(date.getMonth()+1) + pad2(date.getDate());
+ //to return string object
+@@ -23,8 +29,8 @@
+   //item is a single person
+   var item = obj[i];
+   //check if item has a creditcard then save the :name and :creditcard to the cvs object in the cvs format
+-  if(item.creditcard != null){
+-    csv += item.name + "," + item.creditcard + "\n";
++  if(item.email !=null && item.creditcard != null){
++    csv += item.name + "," +item.email + "," + item.creditcard + "\n";
+   }
+ }
+ 
